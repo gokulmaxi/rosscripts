@@ -1,0 +1,9 @@
+#!/bin/bash
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ "$#" -eq 1 ] || die "2 argument required, $# provided"
+echo $1 | grep -E -q '^[0-9]+$' || die "output directory required"
+rosrun xacro xacro  $1 > $2
